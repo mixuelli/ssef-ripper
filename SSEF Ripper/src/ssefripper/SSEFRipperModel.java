@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 
+//get info from control and update db
+
+
 package ssefripper;
 
 /**
  *
  * @author Acer
  */
-public class SSEFRipperModel {
+public class SSEFRipperModel implements Model{
     
 }

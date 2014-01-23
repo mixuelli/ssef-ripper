@@ -11,5 +11,5 @@ package ssefripper;
  * @author Acer
  */
 public interface Control {
-    
+    public void extract();
 }

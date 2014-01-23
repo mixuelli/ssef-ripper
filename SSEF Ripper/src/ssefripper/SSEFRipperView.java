@@ -4,14 +4,19 @@
  * and open the template in the editor.
  */
 
+//user interface
+
 package ssefripper;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author Acer
  */
-public class SSEFRipperView extends javax.swing.JFrame {
+public class SSEFRipperView extends javax.swing.JFrame implements View{
 
+    Control control;
     /**
      * Creates new form SSEFRipperView
      */
@@ -41,6 +46,11 @@ public class SSEFRipperView extends javax.swing.JFrame {
         jButton1.setText("Browse");
 
         jButton2.setText("Extract");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,6 +82,11 @@ public class SSEFRipperView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        control.extract();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,4 +130,8 @@ public class SSEFRipperView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    public ArrayList<String> getFiles() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

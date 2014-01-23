@@ -12,4 +12,7 @@ package ssefripper;
  */
 public interface Model {
     
+    public void update();//some parameter
+    
+    
 }
