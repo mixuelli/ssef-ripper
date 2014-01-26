@@ -49,6 +49,13 @@ public class SSEFRipperView extends javax.swing.JFrame implements View{
 
         jLabel1.setText("Selected Files: ");
 
+        jTextField1.setEditable(false);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("Browse");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,13 +115,17 @@ public class SSEFRipperView extends javax.swing.JFrame implements View{
              System.out.println("Opening: " + file.length + ".");
              String text="";
              for(File f:file){
-                 text+=f.getPath();
+                 text+="\""+f.getName()+"\" ";
              }
              jTextField1.setText(text);
         } else {
              System.out.println("Open command cancelled by user.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
