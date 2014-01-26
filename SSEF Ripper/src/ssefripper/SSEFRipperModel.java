@@ -14,5 +14,9 @@ package ssefripper;
  * @author Acer
  */
 public class SSEFRipperModel implements Model{
+
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

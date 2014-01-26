@@ -8,7 +8,10 @@
 
 package ssefripper;
 
+import java.io.File;
 import java.util.ArrayList;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -39,11 +42,19 @@ public class SSEFRipperView extends javax.swing.JFrame implements View{
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
+        jFileChooser1.setFileFilter(new FileNameExtensionFilter("PDF files","pdf"));
+        jFileChooser1.setMultiSelectionEnabled(true);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Selected Files: ");
 
         jButton1.setText("Browse");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Extract");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +98,23 @@ public class SSEFRipperView extends javax.swing.JFrame implements View{
         // TODO add your handling code here:
         control.extract();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int returnVal =jFileChooser1.showOpenDialog(this);
+         if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File[] file = jFileChooser1.getSelectedFiles();
+            //This is where a real application would open the file.
+             System.out.println("Opening: " + file.length + ".");
+             String text="";
+             for(File f:file){
+                 text+=f.getPath();
+             }
+             jTextField1.setText(text);
+        } else {
+             System.out.println("Open command cancelled by user.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
