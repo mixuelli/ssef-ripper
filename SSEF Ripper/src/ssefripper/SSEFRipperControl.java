@@ -9,6 +9,7 @@
 
 package ssefripper;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -22,9 +23,16 @@ public class SSEFRipperControl implements Control{
         view = v;
     }
 
-    public void extract() {
-        ArrayList<String> list=view.getFiles();
-        
+    public void extract(File f[]) {
+        //read from file
+        //format
+        //send to model
+    }
+    
+    public String format(String s){
+        //read required format from text file
+        //format in correct order
+        return "";
     }
     
 }

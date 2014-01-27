@@ -20,6 +20,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class SSEFRipperView extends javax.swing.JFrame implements View{
 
     Control control;
+    File f[];
     /**
      * Creates new form SSEFRipperView
      */
@@ -103,19 +104,27 @@ public class SSEFRipperView extends javax.swing.JFrame implements View{
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        control.extract();
+        if(f==null){
+            //show pop-up
+        }
+        else{
+            control.extract(f);
+            f=null;
+            jTextField1.setText("");
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int returnVal =jFileChooser1.showOpenDialog(this);
          if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File[] file = jFileChooser1.getSelectedFiles();
+            f = jFileChooser1.getSelectedFiles();
             //This is where a real application would open the file.
-             System.out.println("Opening: " + file.length + ".");
+             System.out.println("Opening: " + f.length + ".");
              String text="";
-             for(File f:file){
-                 text+="\""+f.getName()+"\" ";
+             for(File file:f){
+                 text+="\""+file.getName()+"\" ";
              }
              jTextField1.setText(text);
         } else {
