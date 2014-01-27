@@ -19,7 +19,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class SSEFRipperView extends javax.swing.JFrame implements View{
 
-    Control control;
+    Controller control;
     File f[];
     /**
      * Creates new form SSEFRipperView

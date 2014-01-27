@@ -6,13 +6,15 @@
 
 package ssefripper;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Acer
  */
 public interface Model {
     
-    public void update();//some parameter
+    public void update(ArrayList<String> sList);//some parameter
     
     
 }
