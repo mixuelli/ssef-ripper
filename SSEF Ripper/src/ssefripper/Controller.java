@@ -6,10 +6,12 @@
 
 package ssefripper;
 
+import java.io.File;
+
 /**
  *
  * @author Acer
  */
-public interface Control {
-    public void extract();
+public interface Controller {
+    public void extract(File f[]);
 }

@@ -8,7 +8,10 @@
 
 package ssefripper;
 
+import java.io.File;
 import java.util.ArrayList;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -16,7 +19,8 @@ import java.util.ArrayList;
  */
 public class SSEFRipperView extends javax.swing.JFrame implements View{
 
-    Control control;
+    Controller control;
+    File f[];
     /**
      * Creates new form SSEFRipperView
      */
@@ -39,11 +43,26 @@ public class SSEFRipperView extends javax.swing.JFrame implements View{
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
+        jFileChooser1.setFileFilter(new FileNameExtensionFilter("PDF files","pdf"));
+        jFileChooser1.setMultiSelectionEnabled(true);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Selected Files: ");
 
+        jTextField1.setEditable(false);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("Browse");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Extract");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -85,8 +104,37 @@ public class SSEFRipperView extends javax.swing.JFrame implements View{
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        control.extract();
+        if(f==null){
+            //show pop-up
+        }
+        else{
+            control.extract(f);
+            f=null;
+            jTextField1.setText("");
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int returnVal =jFileChooser1.showOpenDialog(this);
+         if (returnVal == JFileChooser.APPROVE_OPTION) {
+            f = jFileChooser1.getSelectedFiles();
+            //This is where a real application would open the file.
+             System.out.println("Opening: " + f.length + ".");
+             String text="";
+             for(File file:f){
+                 text+="\""+file.getName()+"\" ";
+             }
+             jTextField1.setText(text);
+        } else {
+             System.out.println("Open command cancelled by user.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments

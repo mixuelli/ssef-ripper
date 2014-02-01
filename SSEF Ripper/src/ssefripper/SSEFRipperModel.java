@@ -9,10 +9,23 @@
 
 package ssefripper;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Acer
  */
 public class SSEFRipperModel implements Model{
+    
+    
+    private String format(String s){
+        //read required format from text file
+        //format in correct order
+        return "";
+    }
+
+    public void update(ArrayList<String> sList) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
