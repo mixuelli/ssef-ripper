@@ -40,11 +40,17 @@ public class SSEFRipperController implements Controller{
                     AcroFields form = reader.getAcroFields();
                     Set<String> fields = form.getFields().keySet();
                     
+                    ArrayList<String> data = new ArrayList<String>();
+                    
                     for (String key : fields) {
                         switch (form.getFieldType(key)) {
                         case AcroFields.FIELD_TYPE_CHECKBOX:
+                            if (form.getField(key).equals("Yes"))
+                                data.add("TRUE");
+                            else data.add("FALSE");
                             break;
                         case AcroFields.FIELD_TYPE_TEXT:
+                            data.add(form.getField(key));
                             break;
                         }
                     }
