@@ -10,22 +10,49 @@
 package ssefripper;
 
 import java.util.ArrayList;
-
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Acer
  */
 public class SSEFRipperModel implements Model{
     
+    Connection conn = null;
+    String url = "jdbc:mysql://localhost:3306/";
+    String dbName = "ssefpdfdata";
+    String driver = "com.mysql.jdbc.Driver";
+    String userName = "root";
+    String password = ""; //rmb to change
+    Statement stmt = null;
     
-    private String format(String s){
-        //read required format from text file
+    public SSEFRipperModel(){
+    }
+    
+    
+    private String format(ArrayList<String> sList){
         //format in correct order
-        return "";
+        String sql="INSERT INTO "+sList.get(0)+" VALUES (" +sList.get(1);
+        for(int i=2;i<sList.size();i++){
+            sql+=", \'"+sList.get(i)+"\'";
+        }
+        sql+=");";
+        return sql;
     }
 
     public void update(ArrayList<String> sList) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+            Class.forName(driver).newInstance();
+            conn = DriverManager.getConnection(url+dbName,userName,password);
+            System.out.println("Connected to the database");
+            String sql = format(sList);
+            stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+        } catch (Exception ex) {
+            Logger.getLogger(SSEFRipperModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
