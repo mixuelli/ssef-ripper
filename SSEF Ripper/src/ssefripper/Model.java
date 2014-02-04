@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public interface Model {
     
-    public void update(ArrayList<String> sList);//some parameter
+    public boolean update(ArrayList<String> sList);//some parameter
     
     
 }

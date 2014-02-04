@@ -39,12 +39,11 @@ public class SSEFRipperController implements Controller{
     public void extract(File f[]){
         //read from file
         try {
-            for(File file:f){
-                
+            
+            for(File file:f){    
                     PdfReader reader = new PdfReader(file.getPath());
                     int pages = reader.getNumberOfPages();
                     long id = System.currentTimeMillis();
-                    
                     for(int i=1;i<=pages;i++){
                         reader = new PdfReader(file.getPath());
                         reader.selectPages(i + "-" + i);//select page
@@ -67,7 +66,9 @@ public class SSEFRipperController implements Controller{
                                 break;
                             }
                         }
-                        model.update(data);
+                        if(model.update(data)==false){
+                            view.reportError(file.getName());
+                        }
                     }
             }
          } catch (IOException ex) {

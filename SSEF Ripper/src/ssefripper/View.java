@@ -14,6 +14,6 @@ import java.util.ArrayList;
  */
 public interface View {
     
-    public ArrayList<String> getFiles();
+    public void reportError(String fileName);
     
 }

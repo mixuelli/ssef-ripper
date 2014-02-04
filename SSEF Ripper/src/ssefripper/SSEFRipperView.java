@@ -31,6 +31,9 @@ public class SSEFRipperView extends javax.swing.JFrame implements View{
     public void addController(Controller c){
         control =c;
     }
+    public void reportError(String fileName){
+        JOptionPane.showMessageDialog(this, "An error has occurred with file "+fileName+".","Message",JOptionPane.ERROR_MESSAGE);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,6 +113,7 @@ public class SSEFRipperView extends javax.swing.JFrame implements View{
         // TODO add your handling code here:
         if(f==null){
             //show pop-up
+            JOptionPane.showMessageDialog(this, "Please select file(s).");
         }
         else{
             control.extract(f);
@@ -181,7 +185,4 @@ public class SSEFRipperView extends javax.swing.JFrame implements View{
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-    public ArrayList<String> getFiles() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

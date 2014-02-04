@@ -24,7 +24,7 @@ public class SSEFRipperModel implements Model{
     String dbName = "ssefpdfdata";
     String driver = "com.mysql.jdbc.Driver";
     String userName = "root";
-    String password = ""; //rmb to change
+    String password = "";
     Statement stmt = null;
     
     public SSEFRipperModel(){
@@ -42,7 +42,7 @@ public class SSEFRipperModel implements Model{
         return sql;
     }
 
-    public void update(ArrayList<String> sList) {
+    public boolean update(ArrayList<String> sList) {
         
         try {
             Class.forName(driver).newInstance();
@@ -55,7 +55,9 @@ public class SSEFRipperModel implements Model{
             System.out.println("Disconnected from database");
         } catch (Exception ex) {
             Logger.getLogger(SSEFRipperModel.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
+        return true;
     }
     
 }
