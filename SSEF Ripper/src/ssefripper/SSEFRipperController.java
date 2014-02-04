@@ -27,11 +27,13 @@ import java.util.logging.Logger;
  */
 public class SSEFRipperController implements Controller{
     
-    static final String pages= "PageNumber.txt";
-    
     View view;
-    public SSEFRipperController (View v){
+    Model model;
+    final String TABLENAME = "page";
+    
+    public SSEFRipperController (View v, Model m){
         view = v;
+        model = m;
     }
 
     public void extract(File f[]){
@@ -40,26 +42,33 @@ public class SSEFRipperController implements Controller{
             for(File file:f){
                 
                     PdfReader reader = new PdfReader(file.getPath());
+                    int pages = reader.getNumberOfPages();
+                    long id = System.currentTimeMillis();
                     
-                    
-                    AcroFields form = reader.getAcroFields();
-                    Set<String> fields = form.getFields().keySet();
-                    
-                    ArrayList<String> data = new ArrayList<String>();
-                    
-                    for (String key : fields) {
-                        switch (form.getFieldType(key)) {
-                        case AcroFields.FIELD_TYPE_CHECKBOX:
-                            if (form.getField(key).equals("Yes"))
-                                data.add("TRUE");
-                            else data.add("FALSE");
-                            break;
-                        case AcroFields.FIELD_TYPE_TEXT:
-                            data.add(form.getField(key));
-                            break;
+                    for(int i=1;i<=pages;i++){
+                        reader = new PdfReader(file.getPath());
+                        reader.selectPages(i + "-" + i);//select page
+                        AcroFields form = reader.getAcroFields();
+                        Set<String> fields = form.getFields().keySet();
+                        if(fields.isEmpty()) continue; //skip if there are no fields
+                        ArrayList<String> data = new ArrayList<String>();
+                        
+                        data.add(TABLENAME+i);
+                        data.add(id+"");
+                        for (String key : fields) {
+                            switch (form.getFieldType(key)) {
+                            case AcroFields.FIELD_TYPE_CHECKBOX:
+                                if (form.getField(key).equals("Yes"))
+                                    data.add("TRUE");
+                                else data.add("FALSE");
+                                break;
+                            case AcroFields.FIELD_TYPE_TEXT:
+                                data.add(form.getField(key));
+                                break;
+                            }
                         }
+                        model.update(data);
                     }
-
             }
          } catch (IOException ex) {
                 Logger.getLogger(SSEFRipperController.class.getName()).log(Level.SEVERE, null, ex);
