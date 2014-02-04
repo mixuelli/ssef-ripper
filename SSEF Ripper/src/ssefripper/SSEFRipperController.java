@@ -27,6 +27,8 @@ import java.util.logging.Logger;
  */
 public class SSEFRipperController implements Controller{
     
+    static final String pages= "PageNumber.txt";
+    
     View view;
     public SSEFRipperController (View v){
         view = v;
@@ -36,7 +38,10 @@ public class SSEFRipperController implements Controller{
         //read from file
         try {
             for(File file:f){
+                
                     PdfReader reader = new PdfReader(file.getPath());
+                    
+                    
                     AcroFields form = reader.getAcroFields();
                     Set<String> fields = form.getFields().keySet();
                     
