@@ -35,9 +35,10 @@ public class SSEFRipperModel implements Model{
         //format in correct order
         String sql="INSERT INTO "+sList.get(0)+" VALUES (" +sList.get(1);
         for(int i=2;i<sList.size();i++){
-            sql+=", \'"+sList.get(i)+"\'";
+            sql+=", "+sList.get(i);
         }
         sql+=");";
+        System.out.println(sql);
         return sql;
     }
 
@@ -50,6 +51,8 @@ public class SSEFRipperModel implements Model{
             String sql = format(sList);
             stmt = conn.createStatement();
             stmt.executeUpdate(sql);
+            conn.close();
+            System.out.println("Disconnected from database");
         } catch (Exception ex) {
             Logger.getLogger(SSEFRipperModel.class.getName()).log(Level.SEVERE, null, ex);
         }
