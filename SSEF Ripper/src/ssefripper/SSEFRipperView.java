@@ -27,6 +27,10 @@ public class SSEFRipperView extends javax.swing.JFrame implements View{
     public SSEFRipperView() {
         initComponents();
     }
+    
+    public void addController(Controller c){
+        control =c;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -120,8 +124,6 @@ public class SSEFRipperView extends javax.swing.JFrame implements View{
         int returnVal =jFileChooser1.showOpenDialog(this);
          if (returnVal == JFileChooser.APPROVE_OPTION) {
             f = jFileChooser1.getSelectedFiles();
-            //This is where a real application would open the file.
-             System.out.println("Opening: " + f.length + ".");
              String text="";
              for(File file:f){
                  text+="\""+file.getName()+"\" ";

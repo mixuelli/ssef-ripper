@@ -1,6 +1,6 @@
 
 import javax.swing.JFrame;
-import ssefripper.SSEFRipperView;
+import ssefripper.*;
 
 /*
  * To change this template, choose Tools | Templates
@@ -18,8 +18,11 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here]
-        JFrame frame = new SSEFRipperView();
-        frame.setVisible(true);
+        SSEFRipperView view = new SSEFRipperView();
+        SSEFRipperModel model = new SSEFRipperModel();
+        SSEFRipperController controller = new SSEFRipperController(view,model);
+        view.addController(controller);
+        view.setVisible(true);
     }
 
 }
