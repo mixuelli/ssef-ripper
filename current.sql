@@ -316,3 +316,51 @@ QSDSTraining varchar(300),
 6ASite varchar(300),
 6AMinimizeRisk varchar(300),
 primary key(id));
+
+-- Current page: 13
+
+create table page13 (
+id bigint,
+6BQSTitle varchar(300),
+6bqsdate varchar(300),
+ProjectTitle varchar(300),
+6BQSPrinted varchar(300),
+StudentName varchar(300),
+6BOrgan boolean default false,
+6BQSEmail varchar(300),
+6BInstitutionObtained varchar(300),
+6BFresh boolean default false,
+6bqstissuesverify boolean default false,
+6BPrimary boolean default false,
+6BQSInstitution varchar(300),
+6BBlood boolean default false,
+6boshealthact boolean default false,
+6BBodyFluids boolean default false,
+6BHuman boolean default false,
+6BTissuesObtained varchar(300),
+primary key(id));
+
+-- Current page: 14
+
+create table page14 (
+id bigint,
+70708Title varchar(300),
+1213Ab boolean default false,
+70708Chg varchar(300),
+StudentName varchar(300),
+70708Theme varchar(300),
+70809Theme varchar(300),
+7SigDate varchar(300),
+70809Title varchar(300),
+70708Var varchar(300),
+7CurrTheme varchar(300),
+70809Var varchar(300),
+7CurrTitle varchar(300),
+70809Obj varchar(300),
+7CurrVar varchar(300),
+1112Ab boolean default false,
+70809Chg varchar(300),
+7CurrChg varchar(300),
+7CurrObj varchar(300),
+70708Obj varchar(300),
+primary key(id));

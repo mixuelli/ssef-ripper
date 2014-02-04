@@ -63,7 +63,7 @@ public class SSEFRipperController implements Controller{
                                 else data.add("FALSE");
                                 break;
                             case AcroFields.FIELD_TYPE_TEXT:
-                                data.add(form.getField(key));
+                                data.add("\'"+form.getField(key)+"\'");
                                 break;
                             }
                         }
