@@ -32,7 +32,8 @@ public class SSEFRipperView extends javax.swing.JFrame implements View{
         control =c;
     }
     public void reportError(String fileName){
-        JOptionPane.showMessageDialog(this, "An error has occurred with file "+fileName+".","Message",JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "An error has occurred with file "+fileName+".\n"
+                + "Possible errors:\nWrong files selected.\nWrong database password.\nWrong table name entered","Message",JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -133,8 +134,6 @@ public class SSEFRipperView extends javax.swing.JFrame implements View{
                  text+="\""+file.getName()+"\" ";
              }
              jTextField1.setText(text);
-        } else {
-             System.out.println("Open command cancelled by user.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

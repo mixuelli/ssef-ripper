@@ -9,8 +9,10 @@
 
 package ssefripper;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.sql.*;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -24,10 +26,18 @@ public class SSEFRipperModel implements Model{
     String dbName = "ssefpdfdata";
     String driver = "com.mysql.jdbc.Driver";
     String userName = "root";
-    String password = "";
+    private String password = "";
+    
     Statement stmt = null;
     
     public SSEFRipperModel(){
+        try {
+            Scanner sc = new Scanner(new BufferedReader(new FileReader("DbPassword.txt")));
+            password=sc.next();//get pw
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(SSEFRipperModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     
